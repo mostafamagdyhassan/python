@@ -1,0 +1,45 @@
+import webbrowser
+from googlesearch import search
+
+def google_search(query, num_results=10):
+    try:
+        results = list(search(query, tld="co.in", num=num_results, stop=num_results, pause=2))
+        return results
+    except Exception as e:
+        print(f"Error fetching search results: {e}")
+        return []
+
+def save_links(links, filename="search_links.txt"):
+    with open(filename, "w") as file:
+        for link in links:
+            file.write(link + "\n")
+
+def open_links_from_file(filename="search_links.txt"):
+    try:
+        with open(filename, "r") as file:
+            links = file.readlines()
+        for i, link in enumerate(links, start=1):
+            print(f"{i}. {link.strip()}")  # Display options
+        choice = input("\nEnter the number of the link you want to open (or 'all' to open all): ").strip()
+        if choice.lower() == "all":
+            for link in links:
+                webbrowser.open(link.strip())
+        elif choice.isdigit():
+            index = int(choice) - 1
+            if 0 <= index < len(links):
+                webbrowser.open(links[index].strip())
+            else:
+                print("Invalid selection.")
+    except FileNotFoundError:
+        print("File not found. Please perform a search first.")
+
+if __name__ == "__main__":
+    ask = input("Enter your search query: ")
+    results = google_search(ask)
+
+    if results:
+        save_links(results)
+        print("\nSearch results saved in 'search_links.txt'.")
+        open_links_from_file()
+    else:
+        print("No results found or an error occurred.")

@@ -1,0 +1,14 @@
+import sqlalchemy 
+import json
+import os
+
+
+engine = sqlalchemy.create_engine("sqlite:///european_database.sqlite")
+
+conn = engine.connect() 
+metadata = sqlalchemy.MetaData() #extracting the metadata
+
+division= sqlalchemy.Table('divisions', metadata, autoload = True, 
+autoload_with = engine) #Table object
+
+print(repr(metadata.tables['divisions']))

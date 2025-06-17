@@ -1,0 +1,31 @@
+import requests
+import json
+
+print('welcome')
+userinput=input('Enter city name ')
+countery = input('countrey')
+
+apikey = 'f64652ca3bae8cd50fa028b8951e665a'
+
+url = f'http://api.openweathermap.org/geo/1.0/zip?zip={userinput},{countery}&appid={apikey}'
+
+r = requests.get(url)
+data = r.json()
+
+
+
+
+lat = data['lat']
+lon= data['lon']
+
+url2= f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={apikey}'
+
+r2 = requests.get(url2)
+data2 = r2.json()
+print(data2)
+
+
+
+
+
+

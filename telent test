@@ -1,0 +1,9 @@
+# we will be using try and except block 
+# to identify it is able 
+# to import it or not 
+  
+try: 
+    import html5lib
+    print("working") 
+except: 
+    print("not working") 

@@ -1,0 +1,35 @@
+import webbrowser
+
+def save_websites_to_file(websites, filename="websites.txt"):
+    """Save the list of websites to a text file."""
+    with open(filename, "w") as file:
+        for site in websites:
+            file.write(site + "\n")
+    print(f"Websites saved to {filename}")
+
+def open_websites(websites):
+    """Open each website in the default web browser."""
+    for site in websites:
+        webbrowser.open(site)
+    print("Websites opened in browser.")
+
+def main():
+    websites = []
+    print("Enter website URLs (type 'done' to finish):")
+    
+    while True:
+        site = input("Website URL: ").strip()
+        if site.lower() == 'done':
+            break
+        if not site.startswith("http"):
+            site = "http://" + site  # Ensure proper URL format
+        websites.append(site)
+    
+    if websites:
+        save_websites_to_file(websites)
+        open_websites(websites)
+    else:
+        print("No websites entered.")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,14 @@
+import pandas as pd
+import html5lib
+x= input('enter website ')
+scrap= pd.read_html(x)
+print (scrap)
+for i, table in enumerate(scrap):
+	print ('---')
+	print(i)
+	print(table)
+print (scrap[23])
+df= scrap[23]
+df.to_csv('league', index=False)
+dffile=pd.read_csv('league')
+print(dffile)
