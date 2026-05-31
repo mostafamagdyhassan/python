@@ -1,1 +1,1 @@
-# python
+A collection of Python scripts for DevOps, network automation, system administration, web scraping, database operations, and network troubleshooting. The repository includes examples using Netmiko, Paramiko, Telnet, Socket Programming, Nmap, MySQL, SQLAlchemy, and various automation tools for infrastructure and network management.
